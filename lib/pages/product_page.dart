@@ -110,7 +110,7 @@ class _ProductPageState extends State<ProductPage> {
               SizedBox(
                 height: spacing,
               ),
-              Text('Decription: ${product.description}'),
+              Text('Description: ${product.description}'),
               AddToBasketButton(
                 productId: id,
                 productSize: shoeSize,
