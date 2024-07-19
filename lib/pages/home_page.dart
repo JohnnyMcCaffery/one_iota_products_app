@@ -11,10 +11,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 204, 204, 204),
         body: BlocBuilder<ProductsBloc, ProductBlocState>(
-            buildWhen: (previous, current) => current.products.isNotEmpty,
+            buildWhen: (previous, current) => current.status != previous.status,
             builder: (BuildContext context, ProductBlocState state) {
               if (state.status != 'error') {
-                if (state.products.isEmpty) {
+                if (state.status != 'completed') {
                   return const Center(child: CircularProgressIndicator());
                 } else {
                   return ProductList(products: state.products);

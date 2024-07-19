@@ -1,22 +1,22 @@
 part of 'products_bloc.dart';
 
 abstract class ProductBlocState {
+  ProductBlocState({required this.status});
   List<Product> products = [];
 
   String status = 'none';
 }
 
-class ProductInit extends ProductBlocState{}
+class ProductInit extends ProductBlocState {
+  ProductInit({required super.status});
+}
 
 class ProductsInitialise extends ProductBlocState {
-  ProductsInitialise({products, brands}){
+  ProductsInitialise({products, required super.status}) {
     super.products = products;
-    super.status = "completed";
   }
 }
 
 class ProductsStatusUpdate extends ProductBlocState {
-  ProductsStatusUpdate(status){
-    super.status = status;
-  }
+  ProductsStatusUpdate({required super.status});
 }

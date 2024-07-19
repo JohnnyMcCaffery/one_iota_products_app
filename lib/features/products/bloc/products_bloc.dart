@@ -9,7 +9,7 @@ part 'product_bloc_event.dart';
 part 'product_bloc_state.dart';
 
 class ProductsBloc extends Bloc<ProductBlocEvent, ProductBlocState> {
-  ProductsBloc() : super(ProductInit()) {
+  ProductsBloc() : super(ProductInit(status: 'none')) {
     on<InitialiseProducts>(
       (event, emit) => _initialiseProducts(emit),
     );
@@ -17,7 +17,7 @@ class ProductsBloc extends Bloc<ProductBlocEvent, ProductBlocState> {
 
   void _initialiseProducts(emit) async {
     try {
-      emit(ProductsStatusUpdate("loading"));
+      emit(ProductsStatusUpdate(status: "loading"));
 
       Response response = await getProductList();
 
@@ -28,9 +28,10 @@ class ProductsBloc extends Bloc<ProductBlocEvent, ProductBlocState> {
           .map<Product>((json) => Product.fromJson(json))
           .toList();
 
-      emit(ProductsInitialise(products: products));
+      emit(ProductsInitialise(products: products, status: 'completed'));
     } catch (e) {
-      emit(ProductsStatusUpdate("error"));
+      print('and error has happened: $e');
+      emit(ProductsStatusUpdate(status: "error"));
     }
   }
 }
