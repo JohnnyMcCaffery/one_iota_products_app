@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_iota_products_app/features/products/bloc/products_bloc.dart';
 import 'package:one_iota_products_app/features/products/widgets/product_list.dart';
+import 'package:one_iota_products_app/features/products/widgets/warning_message.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,9 +21,7 @@ class HomePage extends StatelessWidget {
                   return ProductList(products: state.products);
                 }
               } else {
-                return const Center(
-                  child: Text("Something has gone wrong!"),
-                );
+                return const WarningMessage("Something has gone wrong!");
               }
             }));
   }
